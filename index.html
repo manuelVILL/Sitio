@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confeccionando Sueños - Alta Costura Personalizada</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        /* Definición de la paleta de colores basada en el logo (rosado/malva y dorado) */
+        :root {
+            --color-primary: #8B456E; /* Rosa Profundo / Malva (Color principal de marca) */
+            --color-secondary: #D4A74F; /* Dorado/Amarillo Suave (Color de acento) */
+            --color-light-pink: #F2DCE4; /* Rosa Claro Suave (Fondo secundario) */
+            --color-background: #F8F7F3; /* Crema Ligero (Fondo principal) */
+            --color-text: #555555; /* Gris Oscuro para texto */
+            --color-white: #FFFFFF;
+        }
+        .bg-primary { background-color: var(--color-primary); }
+        .text-primary { color: var(--color-primary); }
+        .bg-secondary { background-color: var(--color-secondary); }
+        .text-secondary { color: var(--color-secondary); }
+        .bg-light-pink { background-color: var(--color-light-pink); }
+        .text-light-pink { color: var(--color-light-pink); }
+        .bg-background { background-color: var(--color-background); }
+        .text-background { color: var(--color-background); }
+        .text-text { color: var(--color-text); }
+        .bg-white { background-color: var(--color-white); }
+        
+        /* Fuentes: Playfair Display para títulos elegantes, Inter para texto */
+        .font-serif-elegant { font-family: 'Playfair Display', serif; }
+        .font-body { font-family: 'Inter', sans-serif; }
+        
+        /* Estilo para el logo en la barra de navegación y pie de página */
+        .logo-image {
+            height: 50px; /* Altura ajustada para la barra de navegación */
+            width: auto;
+        }
+
+        /* Efecto de sombra para elementos importantes */
+        .shadow-gold {
+            box-shadow: 0 4px 6px -1px rgba(212, 167, 79, 0.4), 0 2px 4px -1px rgba(212, 167, 79, 0.2);
+        }
+    </style>
+    <script>
+        // Función para simular el desplazamiento suave al hacer clic en enlaces de anclaje
+        function smoothScroll(targetId) {
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80, // Ajuste para el encabezado fijo
+                    behavior: 'smooth'
+                });
+            }
+        }
+        
+        // Inicializar íconos de Lucide después de que el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            
+            // Adjuntar evento de desplazamiento suave a los enlaces
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    smoothScroll(this.getAttribute('href').substring(1));
+                });
+            });
+
+            // Función para alternar el menú en móviles (responsive)
+            const menuButton = document.getElementById('menuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</head>
+<body class="bg-background font-body text-text">
+
+    <header class="bg-primary shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="#inicio" class="flex items-center">
+                        <img 
+                            src="Logo.jpeg" 
+                            onerror="this.src='https://placehold.co/150x50/F8F7F3/8B456E?text=LOGO+CS+FALLBACK'" 
+                            alt="Confeccionando Sueños Logo" 
+                            class="logo-image bg-background rounded-lg p-1"
+                        >
+                    </a>
+                </div>
+                <nav class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="#inicio" class="text-background hover:text-secondary px-3 py-2 rounded-md text-sm font-medium transition duration-150">Inicio</a>
+                        <a href="#servicios" class="text-background hover:text-secondary px-3 py-2 rounded-md text-sm font-medium transition duration-150">Servicios</a>
+                        <a href="#portafolio" class="text-background hover:text-secondary px-3 py-2 rounded-md text-sm font-medium transition duration-150">Portafolio</a>
+                        <a href="#contacto" class="text-primary bg-white hover:bg-gray-100 px-4 py-2 rounded-full text-sm font-bold shadow-gold transition duration-150">¡Cosemos tu idea!</a>
+                    </div>
+                </nav>
+                <div class="md:hidden">
+                    <button id="menuButton" class="text-background hover:text-secondary p-2 rounded-md focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#inicio" class="text-background hover:bg-secondary/20 block px-3 py-2 rounded-md text-base font-medium">Inicio</a>
+                <a href="#servicios" class="text-background hover:bg-secondary/20 block px-3 py-2 rounded-md text-base font-medium">Servicios</a>
+                <a href="#portafolio" class="text-background hover:bg-secondary/20 block px-3 py-2 rounded-md text-base font-medium">Portafolio</a>
+                <a href="#contacto" class="text-primary bg-white block px-3 py-2 rounded-md text-base font-bold mt-2">¡Cosemos tu idea!</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        
+        <section id="inicio" class="relative bg-light-pink pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 lg:pr-12 text-center lg:text-left mb-10 lg:mb-0">
+                    <p class="text-secondary text-lg uppercase tracking-widest mb-3 font-semibold">Alta Costura y Confección a Medida</p>
+                    <h1 class="text-primary font-serif-elegant text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tight">
+                        "Si sueñas en algo...
+                        <span class="block mt-2 text-secondary">lo cosemos a tu realidad.</span>"
+                    </h1>
+                    <p class="mt-6 text-lg text-text/80 max-w-xl mx-auto lg:mx-0">
+                        Convertimos tus ideas de vestuario en prendas únicas. Desde el diseño inicial hasta el último pespunte, te garantizamos exclusividad y el ajuste perfecto.
+                    </p>
+                    <div class="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contacto" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-primary hover:bg-primary/90 transition duration-300 transform hover:scale-105 shadow-gold">
+                            Empezar mi Proyecto
+                        </a>
+                        <a href="#portafolio" class="inline-flex items-center justify-center px-8 py-3 border border-primary text-base font-medium rounded-full text-primary bg-transparent hover:bg-primary/10 transition duration-300">
+                            Ver Portafolio
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <img src="Logo.jpeg" alt="Imagen de Vestido de Alta Costura" class="w-full h-auto rounded-xl shadow-2xl transform rotate-1 transition duration-500 hover:rotate-0">
+                </div>
+            </div>
+        </section>
+        
+        <section id="servicios" class="py-20 bg-primary text-background">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-serif-elegant font-bold mb-4 text-secondary">Nuestra Artesanía en Cada Hilo</h2>
+                <p class="text-lg mb-12 max-w-3xl mx-auto text-background/80">
+                    Ofrecemos un servicio integral de confección, desde la inspiración hasta la prenda terminada.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div class="p-8 rounded-xl bg-light-pink/20 hover:bg-light-pink/30 transition duration-300">
+                        <i data-lucide="sparkles" class="w-10 h-10 text-secondary mx-auto mb-4"></i>
+                        <h3 class="text-2xl font-serif-elegant font-semibold mb-3 text-white">Diseño Exclusivo</h3>
+                        <p class="text-white/70">
+                            Trabajamos contigo para plasmar tu visión. Bocetos, elección de telas y patrones creados solo para ti.
+                        </p>
+                    </div>
+
+                    <div class="p-8 rounded-xl bg-light-pink/20 hover:bg-light-pink/30 transition duration-300">
+                        <i data-lucide="ruler" class="w-10 h-10 text-secondary mx-auto mb-4"></i>
+                        <h3 class="text-2xl font-serif-elegant font-semibold mb-3 text-white">Confección a Medida</h3>
+                        <p class="text-white/70">
+                            El ajuste perfecto no es un lujo, es un estándar. Prendas que abrazan tu silueta con elegancia.
+                        </p>
+                    </div>
+
+                    <div class="p-8 rounded-xl bg-light-pink/20 hover:bg-light-pink/30 transition duration-300">
+                        <i data-lucide="crown" class="w-10 h-10 text-secondary mx-auto mb-4"></i>
+                        <h3 class="text-2xl font-serif-elegant font-semibold mb-3 text-white">Novias y Gala</h3>
+                        <p class="text-white/70">
+                            Creamos el vestuario soñado para los días más importantes. Calidad y detalle en cada puntada.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portafolio" class="py-20 bg-background">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-serif-elegant font-bold mb-4 text-primary">Nuestras Confecciones Hablan por Sí Mismas</h2>
+                <p class="text-lg mb-12 max-w-3xl mx-auto text-text/80">
+                    Estos son algunos de nuestros servicios.
+                </p>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-8">
+                    <div class="group relative overflow-hidden rounded-xl shadow-lg transition duration-300 hover:shadow-2xl hover:scale-[1.02]">
+                        <img src="Confeccion de prendas.jpeg" alt="" class="w-full h-full object-cover transform group-hover:opacity-80 transition duration-500">
+                        <div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-primary/80 to-transparent">
+                            <h4 class="text-white text-lg font-semibold text-left">Confeccion de prendas</h4>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden rounded-xl shadow-lg transition duration-300 hover:shadow-2xl hover:scale-[1.02]">
+                        <img src="Dobladillos.jpeg" alt="" class="w-full h-full object-cover transform group-hover:opacity-80 transition duration-500">
+                        <div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-primary/80 to-transparent">
+                            <h4 class="text-white text-lg font-semibold text-left">Dobladillos</h4>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden rounded-xl shadow-lg transition duration-300 hover:shadow-2xl hover:scale-[1.02]">
+                        <img src="Cambios de cierre.jpeg" alt="" class="w-full h-full object-cover transform group-hover:opacity-80 transition duration-500">
+                        <div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-primary/80 to-transparent">
+                            <h4 class="text-white text-lg font-semibold text-left">Cambios de cierre</h4>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden rounded-xl shadow-lg transition duration-300 hover:shadow-2xl hover:scale-[1.02]">
+                        <img src="Aplicacion de botones.jpeg" alt="" class="w-full h-full object-cover transform group-hover:opacity-80 transition duration-500">
+                        <div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-primary/80 to-transparent">
+                            <h4 class="text-white text-lg font-semibold text-left">Aplicacion de botones</h4>
+                        </div>
+                    </div>       
+                    <div class="group relative overflow-hidden rounded-xl shadow-lg transition duration-300 hover:shadow-2xl hover:scale-[1.02]">
+                        <img src="Ajuste de prendas.jpeg" alt="" class="w-full h-full object-cover transform group-hover:opacity-80 transition duration-500">
+                        <div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-primary/80 to-transparent">
+                            <h4 class="text-white text-lg font-semibold text-left">Ajuste de prendas</h4>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden rounded-xl shadow-lg transition duration-300 hover:shadow-2xl hover:scale-[1.02]">
+                        <img src="https://placehold.co/400x500/D4A74F/8B456E?text=Se ofrece taller satelite" alt="Uniforme Empresarial" class="w-full h-full object-cover transform group-hover:opacity-80 transition duration-500">
+                        <div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-primary/80 to-transparent">
+                            <h4 class="text-white text-lg font-semibold text-left"></h4>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden rounded-xl shadow-lg transition duration-300 hover:shadow-2xl hover:scale-[1.02]">
+                        <img src="Aplicacion de elasticos.jpeg" alt="" class="w-full h-full object-cover transform group-hover:opacity-80 transition duration-500">
+                        <div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-primary/80 to-transparent">
+                            <h4 class="text-white text-lg font-semibold text-left">Aplicacion de elasticos</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="py-20 bg-light-pink">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 text-center">
+                    <h2 class="text-4xl font-serif-elegant font-bold mb-4 text-primary">Contáctanos y Cosemos tu Idea</h2>
+                    <p class="text-lg mb-10 text-text/80 max-w-2xl mx-auto">
+                        Estamos listos para hacer realidad tu prenda ideal. Elige la forma que prefieras para comunicarte.
+                    </p>
+
+                    <div class="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-6">
+
+                        <div class="flex flex-col items-center p-4 bg-background rounded-xl shadow-md hover:shadow-lg transition duration-300 transform hover:scale-[1.03]">
+                            <a href="https://wa.me/573132204502?text=Hola%20Confeccionando%20Sueños,%20me%20interesa%20una%20cotización." target="_blank" class="text-primary hover:text-secondary group flex flex-col items-center">
+                                <i data-lucide="whatsapp" class="w-8 h-8 mb-2"></i>
+                                <span class="text-lg font-semibold">WhatsApp</span>
+                                <span class="text-sm text-text/80 group-hover:underline">+57 3132204502</span>
+                            </a>
+                        </div>
+
+                        <div class="flex flex-col items-center p-4 bg-background rounded-xl shadow-md hover:shadow-lg transition duration-300 transform hover:scale-[1.03]">
+                            <a href="tel:+573132204502" class="text-primary hover:text-secondary group flex flex-col items-center">
+                                <i data-lucide="phone" class="w-8 h-8 mb-2"></i>
+                                <span class="text-lg font-semibold">Llamada</span>
+                                <span class="text-sm text-text/80 group-hover:underline">+57 3132204502</span>
+                            </a>
+                        </div>
+
+                        <div class="flex flex-col items-center p-4 bg-background rounded-xl shadow-md hover:shadow-lg transition duration-300 transform hover:scale-[1.03]">
+                            <a href="https://maps.app.goo.gl/h8MeSNViTwZH2K5Z7?g_st=aw" target="_blank" class="text-primary hover:text-secondary group flex flex-col items-center">
+                                <i data-lucide="map-pin" class="w-8 h-8 mb-2"></i>
+                                <span class="text-lg font-semibold">Ubicación</span>
+                                <span class="text-sm text-text/80 group-hover:underline">Calle 13a #24-35, Barrio Gaitan parte Alta</span>
+                            </a>
+                        </div>
+
+                        <div class="flex flex-col items-center p-4 bg-background rounded-xl shadow-md hover:shadow-lg transition duration-300 transform hover:scale-[1.03]">
+                            <div class="text-primary group flex flex-col items-center">
+                                <i data-lucide="instagram" class="w-8 h-8 mb-2"></i>
+                                <span class="text-lg font-semibold mb-2">Redes Sociales</span>
+                                <div class="flex space-x-3">
+                                    <a href="https://www.instagram.com/liliancarolinamendoza?igsh=MW1sM2toMXZxeHpmOQ==" target="_blank" class="text-text hover:text-secondary transition duration-150"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                                    <a href="https://www.facebook.com/share/1P4EoPrt45/" target="_blank" class="text-text hover:text-secondary transition duration-150"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="bg-primary text-background py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-4 inline-block bg-background rounded-lg p-2">
+                   <img 
+                        src="Logo.jpeg" 
+                        onerror="this.src='https://placehold.co/150x50/F8F7F3/8B456E?text=LOGO+CS+FALLBACK'" 
+                        alt="Confeccionando Sueños Logo" 
+                        class="logo-image"
+                    >
+            </div>
+            
+            <nav class="space-x-4 mb-6">
+                <a href="#inicio" class="text-background hover:text-secondary text-sm">Inicio</a>
+                <span class="text-white/40">|</span>
+                <a href="#servicios" class="text-background hover:text-secondary text-sm">Servicios</a>
+                <span class="text-white/40">|</span>
+                <a href="#portafolio" class="text-background hover:text-secondary text-sm">Portafolio</a>
+                <span class="text-white/40">|</span>
+                <a href="#contacto" class="text-background hover:text-secondary text-sm">Contacto</a>
+            </nav>
+
+            <p class="text-xs text-background/60 mb-2">
+                © <span id="currentYear"></span> Confeccionando Sueños. Todos los derechos reservados.
+            </p>
+            <p class="text-xs text-background/60">
+                "Si sueñas en algo... lo cosemos a tu realidad."
+            </p>
+        </div>
+        <script>
+             // Script para actualizar el año en el footer automáticamente
+             document.getElementById('currentYear').textContent = new Date().getFullYear();
+        </script>
+    </footer>
+
+</body>
+</html>
